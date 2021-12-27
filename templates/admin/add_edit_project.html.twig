@@ -1,0 +1,34 @@
+{% include('admin/navbar.html.twig') %}
+    {%block body %}
+
+       <div class="container">
+        {% if isNew %}
+             <h4>Ajouter une realisation </h4>
+        {% else %}
+             <h4>Modifier une réalisation </h4>
+        {% endif %}
+
+
+             {{form_start(form)}}
+
+                {{form_row(form.title, {'attr': {'class': 'form-control'}})}}
+                {{form_row(form.description, {'attr': {'class': 'form-control'}})}}
+                {{form_row(form.websiteLink, {'attr': {'class': 'form-control'}})}}
+                {{form_row(form.githubLink, {'attr': {'class': 'form-control'}})}}
+                {{form_row(form.priory, {'attr': {'class': 'form-control'}})}}
+                {{form_row(form.imageLink, {'attr': {'class': 'form-control'}})}}
+                <br>
+                 {% if isNew %}
+                    
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+
+                {% else %}
+                    <button type="submit" class="btn btn-success">Modifier</button>
+                {% endif %}
+
+             {{form_end(form)}}
+
+
+        </div>
+
+    {% endblock %}

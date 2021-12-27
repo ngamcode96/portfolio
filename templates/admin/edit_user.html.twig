@@ -1,0 +1,32 @@
+{% include('admin/navbar.html.twig') %}
+    {%block body %}
+        <div class="col-md-4 offset-4 login-form" style="margin-top:10px">
+            <h3 style="text-align:center; margin-top:20px;margin-bottom:20px">Admin - User </h3>
+            <div class="login-form-body">
+                {{ form_start(form) }}
+
+                    {{ form_row(form.first_name, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.last_name, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.email, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.password, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.DateOfBirth, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.age, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.phoneNumber, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.adress, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.nationality, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.niveau, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.university, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.formation, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.title, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.description, {'attr':{'class':'form-control field'}}) }}
+                    {{ form_row(form.resume, {'attr':{'class':'form-control field'}}) }}
+
+                    <div style="text-align:center; margin-top:20px"> 
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+
+    {% endblock %}

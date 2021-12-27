@@ -1,0 +1,39 @@
+{% include('admin/navbar.html.twig') %}
+    {%block body %}
+
+       <div class="container">
+             <h4>Gestion des Realisations <a href="{{path('add_new_project')}}" class="btn btn-primary">Ajouter un project </a></h4>
+
+             <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titre</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">websiteLink</th>
+                    <th scope="col">githubLink</th>
+                    <th scope="col">priorité</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr class="table-active">
+                        <td>{{project.id}}</td>
+                        <td>{{project.title}}</td>
+                        <td>{{project.description}}%</td>
+                        <td>{{project.websiteLink}}</td>
+                        <td>{{project.githubLink}}</td>
+                        <td>{{project.priory}}</td>
+                        <td>
+                            <a href="{{path('edit_project', {'id' : project.id })}}" class="btn btn-success">Modifier</a>
+                            <a href="{{path('delete_project', {'id' : project.id })}}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+                </tbody>
+                </table>
+       </div>
+
+    {% endblock %}

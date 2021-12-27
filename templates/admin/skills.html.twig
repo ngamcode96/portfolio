@@ -1,0 +1,37 @@
+{% include('admin/navbar.html.twig') %}
+    {%block body %}
+
+       <div class="container">
+             <h4>Gestion des compétences <a href="{{path('add_new_skill')}}" class="btn btn-primary">Ajouter une competence </a></h4>
+
+             <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Label</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for skill in skills %}
+                    <tr class="table-active">
+                        <td>{{skill.id}}</td>
+                        <td>{{skill.name}}</td>
+                        <td>{{skill.value}}%</td>
+                        <td>{{skill.description}}</td>
+                        <td>{{skill.label}}</td>
+                        <td>
+                            <a href="{{path('edit_skill', {'id' : skill.id })}}" class="btn btn-success">Modifier</a>
+                            <a href="{{path('delete_skill', {'id' : skill.id })}}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                
+                </tbody>
+                </table>
+       </div>
+
+    {% endblock %}
