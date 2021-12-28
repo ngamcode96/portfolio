@@ -31,9 +31,10 @@ class AdminController extends AbstractController
 
         /**
      * @Route("admin/user/{id}/edit", name="user_edit")
+     * @Route("admin/user/add", name="user_add")
      */
 
-    public function editUser(User $user, Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
