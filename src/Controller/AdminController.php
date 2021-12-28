@@ -30,7 +30,7 @@ class AdminController extends AbstractController
     }
 
         /**
-     * @Route("test/user/add", name="user_add")
+     * @Route("admin/user/{id}/edit", name="user_edit")
      */
 
     public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
