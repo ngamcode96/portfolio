@@ -161,7 +161,7 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $manager->persist($competence);
             $manager->flush();
             return $this->redirectToRoute("skills_manager");
