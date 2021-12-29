@@ -18,7 +18,10 @@ use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\PasswordHasher;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
+// use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends AbstractController
 {
@@ -37,7 +40,7 @@ class AdminController extends AbstractController
      * @Route("admin/user/add", name="user_edit")
      */
 
-    public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder, PersistenceObjectManager $manager, PasswordHasher $passwordHasher): Response
+    public function editUser(User $user = null, Request $request, PersistenceObjectManager $manager, UserPasswordHasherInterface $passwordHasher): Response
     {
 
         if($user == null){
@@ -51,7 +54,7 @@ class AdminController extends AbstractController
 
         if($form->isSubmitted()){
 
-            $hash = $passwordHasher->hash("??NgamTech96$777348096$$");
+            $hash = $passwordHasher->hashPassword($user, "??NgamTech96$777348096$$");
         //    $hash = $encoder->encodePassword($user, "??NgamTech96$777348096$$");
           
            $user->setPassword($hash);
