@@ -14,7 +14,7 @@ use App\Form\RealisationType;
 use App\Form\UserType;
 use App\Repository\CompetencesRepository;
 use App\Repository\RealisationRepository;
-use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -35,7 +35,7 @@ class AdminController extends AbstractController
      * @Route("admin/user/add", name="user_edit")
      */
 
-    public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder, ManagerRegistry $managerRegistry): Response
+    public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder, PersistenceObjectManager $manager): Response
     {
 
         if($user == null){
@@ -45,7 +45,7 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
 
-        $manager = $managerRegistry()->getManager();
+        // $manager = $managerRegistry()->getManager();
 
         if($form->isSubmitted() && $form->isValid()){
 
