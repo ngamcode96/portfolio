@@ -744,9 +744,10 @@
             {% for realisation in realisations %}
                 <div class="card">
                     <div class="box">
-                        <i class="fas fa-paint-brush"></i>
+                        {# <i class="fas fa-paint-brush"></i> #}
+                        <img src="{{asset('uploads/images/')}}{{realisation.imageLink}}" alt="logo - projet" />
                         <div class="text">{{realisation.title}}</div>
-                        <p>{{realisation.description}}</p>
+                        <p>{{realisation.description | raw }}</p>
                     </div>
                 </div>    
             {% endfor %}       
@@ -790,7 +791,7 @@
                 <div class="column right">
                     <div class="text">Je suis {{user.firstName }} {{user.lastName }} | {{user.age}} ans</div>
                     <p>{{user.description  | raw}}</p>
-                    <a href="#">Télécharger mon CV</a>
+                    {# <a href="#">Télécharger mon CV</a> #}
                 </div>
             </div>
         </div>
