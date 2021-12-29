@@ -17,11 +17,9 @@ use App\Repository\RealisationRepository;
 use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 
-use Symfony\Component\PasswordHasher;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
-// use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AdminController extends AbstractController
 {
@@ -37,7 +35,7 @@ class AdminController extends AbstractController
 
         /**
      * @Route("admin/user/{id}/edit", name="user_edit")
-     * @Route("admin/user/add", name="user_edit")
+     * @Route("admin/user/add", name="user_add")
      */
 
     public function editUser(User $user = null, Request $request, PersistenceObjectManager $manager, UserPasswordHasherInterface $passwordHasher): Response
