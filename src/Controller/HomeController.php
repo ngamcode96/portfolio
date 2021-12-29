@@ -27,13 +27,14 @@ class HomeController extends AbstractController
         $competences = $competencesRepository->findAll();
 
         $contact = new Contact();
+        $contact->setCreatedAt(new \DateTime());
+
 
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $contact->setCreatedAt(new \DateTime());
             dump($contact);
             die();
         }
