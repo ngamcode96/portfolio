@@ -9,42 +9,24 @@ use App\Repository\ContactRepository;
  */
 class Contact
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+   
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+ 
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+   
     private $sender;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
+
     private $subject;
 
-    /**
-     * @ORM\Column(type="text")
-     */
+
     private $message;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
+  
     private $createdAt;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+
 
     public function getName(): ?string
     {
