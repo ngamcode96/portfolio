@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
+
 use Symfony\Component\Routing\Annotation\Route;
 
 use App\Entity\User;
@@ -33,6 +36,14 @@ class HomeController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
+
+        $mail = (new Email())->from('contact@ngamcode.com')
+                            ->to('amadoungam18@gmail.com')
+                            ->subject("Bonjour cc")
+                            ->html("<h3>Premier message a partir de symfony</h3>", 'text/html');
+
+        
+        
 
 
 
