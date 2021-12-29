@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(UserRepository $userRepository, RealisationRepository $realisationRepository, CompetencesRepository $competencesRepository, Request $request): Response
+    public function index(Contact $contact = null, UserRepository $userRepository, RealisationRepository $realisationRepository, CompetencesRepository $competencesRepository, Request $request): Response
     {
         $user = $userRepository->findAll(); 
         $realisations = $realisationRepository->findAll(); 
@@ -32,7 +32,7 @@ class HomeController extends AbstractController
 
         $form = $this->createForm(ContactType::class, $contact);
 
-        $form->handleRequest($request);
+        // $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             dump($contact);
