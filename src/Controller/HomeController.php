@@ -72,8 +72,8 @@ class HomeController extends AbstractController
       // ...
 
       $mail = (new Email())
-         ->from('contact@ngamcode.com')
-         ->to('amadoungam18@gmail.com')
+         ->from('amadoungam18@gmail.com')
+         ->to('contact@ngamcode.com')
          ->subject('Mon beau sujet')
          ->html('<p>Ceci est mon message en HTML</p>')
       ;
