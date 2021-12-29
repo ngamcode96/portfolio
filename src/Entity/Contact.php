@@ -4,9 +4,6 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 
-/**
- * @ORM\Entity(repositoryClass=ContactRepository::class)
- */
 class Contact
 {
    
