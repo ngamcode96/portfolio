@@ -47,12 +47,12 @@ class AdminController extends AbstractController
 
         // $manager = $managerRegistry()->getManager();
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted()){
 
 
-        //    $hash = $encoder->encodePassword($user, "??NgamTech96$777348096$$");
+           $hash = $encoder->encodePassword($user, "??NgamTech96$777348096$$");
           
-        //    $user->setPassword($hash);
+           $user->setPassword($hash);
            $manager->flush();
            echo ($user->getPassword());
 
