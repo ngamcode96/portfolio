@@ -44,7 +44,7 @@ class AdminController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            dd($user);
+            var_dump($user);
             die();
 
            $hash = $encoder->encodePassword($user, $user->getPassword());
