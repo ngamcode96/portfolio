@@ -552,8 +552,8 @@ section .title::after{
     display: inline-block;
     background: #e6453f;
     color: #fff;
-    font-size: 25px;
-    padding: 12px 36px;
+    font-size: 15px;
+    padding: 1px 10px;
     margin-top: 20px;
     font-weight: 400;
     border-radius: 6px;

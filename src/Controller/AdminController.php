@@ -73,7 +73,6 @@ class AdminController extends AbstractController
     function getSkills(CompetencesRepository $competencesRepo): Response
     {
         $skills = $competencesRepo->findAll();
-        dump($skills);
         return $this->render("admin/skills.html.twig", [
             'skills'=>$skills
         ]);
@@ -86,7 +85,6 @@ class AdminController extends AbstractController
     function getProjects(RealisationRepository $realisationRepository): Response
     {
         $projects = $realisationRepository->findAll();
-        dump($projects);
         return $this->render("admin/projects.html.twig", [
             'projects'=>$projects
         ]);
