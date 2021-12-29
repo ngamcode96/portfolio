@@ -745,9 +745,12 @@
                 <div class="card">
                     <div class="box">
                         {# <i class="fas fa-paint-brush"></i> #}
-                        <img src="{{asset('uploads/images/')}}{{realisation.imageLink}}" alt="logo - projet" />
+                        {% if realisation.imageLink %}
+                            <img src="{{asset('uploads/images/')}}{{realisation.imageLink}}" style="width:80px" alt="logo - projet" />
+                        {% endif %}
                         <div class="text">{{realisation.title}}</div>
                         <p>{{realisation.description | raw }}</p>
+                        <a href="#" class="btn-show">Voir les détails</a>
                     </div>
                 </div>    
             {% endfor %}       
