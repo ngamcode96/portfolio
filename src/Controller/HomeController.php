@@ -41,6 +41,7 @@ class HomeController extends AbstractController
                             ->to('amadoungam18@gmail.com')
                             ->subject("Bonjour cc")
                             ->html("<h3>Premier message a partir de symfony</h3>", 'text/html');
+        
 
         
         
@@ -62,4 +63,23 @@ class HomeController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+     /**
+    * @Route("/mail", name="email")
+    */
+   public function sendMail(MailerInterface $mailer)
+   {
+      // ...
+
+      $mail = (new Email())
+         ->from('contact@ngamcode.com')
+         ->to('amadoungam18@gmail.com')
+         ->subject('Mon beau sujet')
+         ->html('<p>Ceci est mon message en HTML</p>')
+      ;
+
+      $mailer->send($mail);
+
+      // ...
+   }
 }
