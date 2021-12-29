@@ -36,6 +36,10 @@ class AdminController extends AbstractController
 
     public function editUser(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
+
+        if($user == null){
+            $user = new User();
+        }
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
