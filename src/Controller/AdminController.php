@@ -58,6 +58,8 @@ class AdminController extends AbstractController
 
            $manager->persist($user);
 
+        }else{
+            echo "NOT ";
         }
         
         die();
