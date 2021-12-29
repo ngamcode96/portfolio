@@ -40,7 +40,6 @@ class Realisation
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      */
     private $ImageLink;
 

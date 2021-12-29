@@ -112,15 +112,15 @@ class AdminController extends AbstractController
 
         if($form->isSubmitted() && $form->isSubmitted()){
 
-            $image = $form->get('imageLink')->getData();
-            $file_name = md5(uniqid()).'.'.$image->guessExtension();
+            // $image = $form->get('imageLink')->getData();
+            // $file_name = md5(uniqid()).'.'.$image->guessExtension();
 
-            $image->move(
-                $this->getParameter("images_directory"),
-                $file_name
-            );
+            // $image->move(
+            //     $this->getParameter("images_directory"),
+            //     $file_name
+            // );
 
-            $project->setImageLink($file_name);
+            // $project->setImageLink($file_name);
 
             $manager->persist($project);
             $manager->flush();
