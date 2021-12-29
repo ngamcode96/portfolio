@@ -50,25 +50,19 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
 
 
-        // $manager = $managerRegistry()->getManager();
 
         if($form->isSubmitted()){
 
-            $hash = $passwordHasher->hashPassword($user, "??NgamTech96$777348096$$");
-        //    $hash = $encoder->encodePassword($user, "??NgamTech96$777348096$$");
+            $hash = $passwordHasher->hashPassword($user, $user->getPassword());
           
            $user->setPassword($hash);
-           echo ($user->getPassword());
 
            $manager->persist($user);
            $manager->flush();
 
 
-        }else{
-            echo "NOT ";
         }
         
-        die();
        return $this->render('admin/edit_user.html.twig', [
            'form'=>$form->createView()
        ]);
@@ -105,9 +99,9 @@ class AdminController extends AbstractController
      * @Route("/admin/projects_manager/new", name="add_new_project")
      */
 
-    public function addOrEditProject(Realisation $project = null, Request $request): Response
+    public function addOrEditProject(Realisation $project = null, Request $request, PersistenceObjectManager $manager): Response
     {
-        $manager = $this->getDoctrine()->getManager();
+        
 
         if($project == null){
             $project = new Realisation();
@@ -144,8 +138,8 @@ class AdminController extends AbstractController
  * @Route("/admin/skill_manager/{id}/delete", name="delete_project")
  */
 
- public function delete_project(Realisation $project){
-    $manager = $this->getDoctrine()->getManager();
+ public function delete_project(Realisation $project, PersistenceObjectManager $manager){
+    
     
     $manager->remove($project);
     $manager->flush();
@@ -159,9 +153,9 @@ class AdminController extends AbstractController
      * @Route("/admin/skill_manager/new", name="add_new_skill")
      */
 
-    public function addOrEditSkill(Competences $competence = null, Request $request): Response
+    public function addOrEditSkill(Competences $competence = null, Request $request, PersistenceObjectManager $manager): Response
     {
-        $manager = $this->getDoctrine()->getManager();
+        
 
         if($competence == null){
             $competence = new Competences();
@@ -186,8 +180,8 @@ class AdminController extends AbstractController
  * @Route("/admin/skill_manager/{id}/delete", name="delete_skill")
  */
 
- public function delete_skill(Competences $skill){
-    $manager = $this->getDoctrine()->getManager();
+ public function delete_skill(Competences $skill, PersistenceObjectManager $manager){
+    
     
     $manager->remove($skill);
     $manager->flush();
