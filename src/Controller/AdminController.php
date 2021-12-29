@@ -39,9 +39,13 @@ class AdminController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+
         $manager = $this->getDoctrine()->getManager();
 
         if($form->isSubmitted() && $form->isValid()){
+
+            dd($user);
+            die();
 
            $hash = $encoder->encodePassword($user, $user->getPassword());
            $user->setPassword($hash);
