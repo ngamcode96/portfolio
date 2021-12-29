@@ -840,7 +840,9 @@
                 <div class="column right">
                     <div class="text">Laissez un message !</div>
 
-                    {{form(form)}}
+                    {{form_start(form)}}
+                    {{form_row(form.email)}}
+                    {{form_end(form)}}
 
                     {# {{form_start(form)}}
                         <div class="field name">
