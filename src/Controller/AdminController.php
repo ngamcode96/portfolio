@@ -58,10 +58,11 @@ class AdminController extends AbstractController
         //    $hash = $encoder->encodePassword($user, "??NgamTech96$777348096$$");
           
            $user->setPassword($hash);
-           $manager->flush();
            echo ($user->getPassword());
 
            $manager->persist($user);
+           $manager->flush();
+
 
         }else{
             echo "NOT ";
