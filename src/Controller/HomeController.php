@@ -23,40 +23,49 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Contact $contact = null, UserRepository $userRepository, RealisationRepository $realisationRepository, CompetencesRepository $competencesRepository, Request $request): Response
+    public function index(UserRepository $userRepository, RealisationRepository $realisationRepository, CompetencesRepository $competencesRepository, Request $request, MailerInterface $mailer): Response
     {
         $user = $userRepository->findAll(); 
         $realisations = $realisationRepository->findAll(); 
         $competences = $competencesRepository->findAll();
 
-        if($contact == null){
-            $contact = new Contact();
-        }
+        $contact = new Contact();
+       
 
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
 
-        $mail = (new Email())->from('contact@ngamcode.com')
-                            ->to('amadoungam18@gmail.com')
-                            ->subject("Bonjour cc")
-                            ->html("<h3>Premier message a partir de symfony</h3>", 'text/html');
-        
-
-        
-        
-
-
-
-
+    
 
         if($form->isSubmitted() && $form->isValid()){
-            dump($contact);
-            die();
+            $contact->setCreatedAt(new \DateTime());
+        
+            $email_html = '<div style="margin:10px;padding:10pxl font-family: verdana">
+	
+            <h3 style="color: #001478; text-align: center; margin-top:20px;">Message de '.$contact->getName().'</h3>
+            <h4 style="color: #001478; text-align: center; margin-top:20px;">Expediteur: <a style="text-decoration:none" href="mailto:'.$contact->getSender().'">'.$contact->getSender().'</h4>
+            <div>
+                    <p style="padding: 20px; font-size: 18px; font-family: verdana">'.$contact->getMessage().'</p>
+                    
+                    <p style="padding: 10px; font-size: 18px; font-family: verdana">Envoyé le '.$contact->getCreatedAt()->format('d/m/Y').'</p>
+            </div>
+            
+        </div>
+        ';
+
+            $mail = (new Email())
+            ->from('contact@ngamcode.com')
+            ->to('ngamcode@gmail.com')
+            ->subject('Nouveau message sur ton portfolio')
+            ->html($email_html)
+         ;
+            $mailer->send($mail);
+
+            $this->addFlash('success', 'Votre message a été envoyé avec succès! Merci');
         }
 
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
             'user' => $user[0],
             'realisations'=>$realisations,
             'competences'=>$competences,
@@ -64,22 +73,4 @@ class HomeController extends AbstractController
         ]);
     }
 
-     /**
-    * @Route("/mail", name="email")
-    */
-   public function sendMail(MailerInterface $mailer)
-   {
-      // ...
-
-      $mail = (new Email())
-         ->from('contact@ngamcode.com')
-         ->to('ngamcode@gmail.com')
-         ->subject('Mon beau sujet')
-         ->html('<p>Ceci est mon message en HTML</p>')
-      ;
-
-      $mailer->send($mail);
-
-      // ...
-   }
 }

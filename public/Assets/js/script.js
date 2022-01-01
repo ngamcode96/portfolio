@@ -8,6 +8,10 @@ $(document).ready(function(){
         $('.menu-btn').attr('class', 'menu-btn');
         $(this).addClass('li-active');
     });
+
+    $("#alert_close").click(function(){
+        $(".alert-success").fadeOut(1500);
+    });
     $(window).scroll(function(){
         // sticky navbar on scroll script
         if(this.scrollY > 20){
@@ -90,4 +94,6 @@ $(document).ready(function(){
             }
         }
     });
+
+ 
 });

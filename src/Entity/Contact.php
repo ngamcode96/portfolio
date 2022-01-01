@@ -15,9 +15,6 @@ class Contact
     private $sender;
 
 
-    private $subject;
-
-
     private $message;
 
   
@@ -49,17 +46,6 @@ class Contact
         return $this;
     }
 
-    public function getSubject(): ?string
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(?string $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
 
     public function getMessage(): ?string
     {
