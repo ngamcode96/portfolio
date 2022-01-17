@@ -9,9 +9,9 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
+            url: "https://localhost:8000/realisation/"+ ref +"/show",
             success: function(data){
-                console.log(data);
+                
 
                 if(data.result == 1){
 
@@ -27,7 +27,8 @@ $(document).ready(function(){
                 
                     content = content + '<div style="float:left; margin:20px"><img src="uploads/images/'+ data.id +'.png" alt="image " style="width:100%" /></div>';
                     content = content + '<div style="margin:10px; width:97%;color: #1a2352;"><h4>Description</h4><p>' + data.description + '</p></div>';
-
+                    
+                    $(".pro-opa").show();
                     $(".project").html(content);
                     
                     project_content.fadeIn(1000);
@@ -46,12 +47,15 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
+            url: "https://localhost:8000/realisation/"+ ref +"/show",
             success: function(data){
-                console.log(data);
+                
 
                 if(data.result == 1){
 
+                    var scroll = $(window).scrollTop();
+                    
+                    
                     var content = '<div class="p-header" style="margin:10px; width: 120px">';
                     if(data.imageLink != null){
                         content = content + '<div style="float:left; margin:-10px"><img src="uploads/images/'+ data.imageLink + '" style="width:80px" /></div>';
@@ -65,6 +69,8 @@ $(document).ready(function(){
                     content = content + '<div style="float:left; margin:20px"><img src="uploads/images/'+ data.id +'.png" alt="image " style="width:100%" /></div>';
                     content = content + '<div style="margin:10px; width:97%;color: #1a2352;"><h4>Description</h4><p>' + data.description + '</p></div>';
 
+                    $(".pro-opa").show();
+                    $(".project-content").css({'top' : scroll + 'px'});
                     $(".project").html(content);
                     
                     project_content.fadeIn(1000);
@@ -75,7 +81,13 @@ $(document).ready(function(){
         })
     })
 
+    $(".pro-opa").click(function(){
+        $(".pro-opa").hide();
+        $(".project-content").fadeOut(1000);
+    })
+
     $(".close-project").click(function(){
+        $(".pro-opa").hide();
         $(".project-content").fadeOut(1000);
     })
    
