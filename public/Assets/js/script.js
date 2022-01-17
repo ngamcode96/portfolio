@@ -26,7 +26,7 @@ $(document).ready(function(){
 
                 
                     content = content + '<div style="float:left; margin:20px"><img src="uploads/images/'+ data.id +'.png" alt="image " style="width:100%" /></div>';
-                    content = content + '<div style="margin:10px; width:97%"><h4>Description</h4><p>' + data.description + '</p></div>';
+                    content = content + '<div style="margin:10px; width:97%;color: #1a2352;"><h4>Description</h4><p>' + data.description + '</p></div>';
 
                     $(".project").html(content);
                     
