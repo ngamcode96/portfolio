@@ -585,7 +585,7 @@ section .title::after{
     margin: 20px;
     border-radius: 5px;
     background: #ffffff;
-    box-shadow: 1px 1px 14px 1px #dedede;
+    box-shadow: 1px 1px 8px 1px #dedede;
     z-index: 9999;
     left: 10%;
 }
