@@ -26,7 +26,43 @@ $(document).ready(function(){
 
                 
                     content = content + '<div style="float:left; margin:20px"><img src="uploads/images/'+ data.id +'.png" alt="image " style="width:100%" /></div>';
-                    content = content + '<div style="margin:10px; width:100%"><h4>Description</h4><p>' + data.description + '</p></div>';
+                    content = content + '<div style="margin:10px; width:97%"><h4>Description</h4><p>' + data.description + '</p></div>';
+
+                    $(".project").html(content);
+                    project_content.fadeIn(1000);
+                }else{
+                    alert("Une erreur est survenue!")
+                }
+            }
+        })
+    })
+
+    $(".card").click(function(e){
+        e.preventDefault();
+        var ref = $(this).attr('ref');
+
+        var project_content = $(".project-content");
+        
+        $.ajax({
+            type: "GET",
+            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
+            success: function(data){
+                console.log(data);
+
+                if(data.result == 1){
+
+                    var content = '<div class="p-header" style="margin:10px; width: 120px">';
+                    if(data.imageLink != null){
+                        content = content + '<div style="float:left; margin:-10px"><img src="uploads/images/'+ data.imageLink + '" style="width:80px" /></div>';
+                    }
+                    content = content + '<div style="width: 850px;margin-top: 18px;margin-left: 92px;">';
+                    content = content + '<h2>'+ data.title +' <a href="'+ data.websiteLink +'" target="_blank" class="btn-visite" id="btn-visite">Visiter le site</a></h2>';
+                    content = content + '<p><i class="fab fa-github"></i><a href="' + data.githubLink + '" target="_blank" style="color:#333">Voir le code source </a></p>';
+                    content = content + ' </div> </div>';
+
+                
+                    content = content + '<div style="float:left; margin:20px"><img src="uploads/images/'+ data.id +'.png" alt="image " style="width:100%" /></div>';
+                    content = content + '<div style="margin:10px; width:97%"><h4>Description</h4><p>' + data.description + '</p></div>';
 
                     $(".project").html(content);
                     project_content.fadeIn(1000);
