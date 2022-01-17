@@ -100,7 +100,7 @@ $(document).ready(function(){
 
     // typing text animation script
     var typed = new Typed(".typing", {
-        strings: ["Je suis à la recherche d'un stage conventionné de fin d'études", "A partir du 16 mai 2022"],
+        strings: ["Je suis à la recherche d'un stage", "conventionné de fin d'études", "A partir du 16 mai 2022"],
         typeSpeed: 70,
         backSpeed: 30,
         loop: true
