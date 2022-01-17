@@ -68,7 +68,7 @@
                             <img src="{{asset('uploads/images/')}}{{realisation.imageLink}}" style="width:80px" alt="logo - projet" />
                         {% endif %}
                         <div class="text">{{realisation.title}}</div>
-                        <p>{{realisation.description|length > 150 ? realisation.description|slice(0, 150) ~ '...' : realisation.description  }}</p>
+                        <p>{{realisation.description|length > 130 ? realisation.description|slice(0, 130) ~ '...' : realisation.description  }}</p>
                         <button class="btn-show" id="btn-show" ref="{{realisation.id}}">Voir les détails</button>
                     </div>
                 </div>    
