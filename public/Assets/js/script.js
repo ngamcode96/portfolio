@@ -2,14 +2,14 @@ $(document).ready(function(){
 
 
     $(".btn-show").click(function(e){
-        e.preventDefault();
+       
         var ref = $(this).attr('ref');
 
         var project_content = $(".project-content");
         
         $.ajax({
             type: "GET",
-            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
+            url: "https://localhost:8000/realisation/"+ ref +"/show",
             success: function(data){
                 console.log(data);
 
@@ -39,14 +39,14 @@ $(document).ready(function(){
     })
 
     $(".card").click(function(e){
-        e.preventDefault();
+        
         var ref = $(this).attr('ref');
 
         var project_content = $(".project-content");
         
         $.ajax({
             type: "GET",
-            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
+            url: "https://localhost:8000/realisation/"+ ref +"/show",
             success: function(data){
                 console.log(data);
 
