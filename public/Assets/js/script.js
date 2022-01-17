@@ -9,7 +9,7 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "https://localhost:8000/realisation/"+ ref +"/show",
+            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
             success: function(data){
                 
 
@@ -47,7 +47,7 @@ $(document).ready(function(){
         
         $.ajax({
             type: "GET",
-            url: "https://localhost:8000/realisation/"+ ref +"/show",
+            url: "https://amadoungam.herokuapp.com/realisation/"+ ref +"/show",
             success: function(data){
                 
 
