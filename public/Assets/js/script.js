@@ -29,6 +29,7 @@ $(document).ready(function(){
                     content = content + '<div style="margin:10px; width:97%"><h4>Description</h4><p>' + data.description + '</p></div>';
 
                     $(".project").html(content);
+                    
                     project_content.fadeIn(1000);
                 }else{
                     alert("Une erreur est survenue!")
@@ -65,6 +66,7 @@ $(document).ready(function(){
                     content = content + '<div style="margin:10px; width:97%"><h4>Description</h4><p>' + data.description + '</p></div>';
 
                     $(".project").html(content);
+                    
                     project_content.fadeIn(1000);
                 }else{
                     alert("Une erreur est survenue!")
@@ -142,12 +144,6 @@ $(document).ready(function(){
         loop: true
     });
 
-    var typed = new Typed(".typing-2", {
-        strings: ["YouTuber", "Developer", "Blogger", "Designer", "Freelancer"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
 
     // owl carousel script
     $('.carousel').owlCarousel({
