@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Contact;
+use App\Entity\Realisation;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\Mailer\MailerInterface;
@@ -72,5 +74,22 @@ class HomeController extends AbstractController
             'form'=>$form->createView()
         ]);
     }
+
+    /**
+     * @Route("realisation/{id}/show", name="show_detail")
+     */
+
+     public function getRealisation(Realisation $realisation){
+         
+        return new JsonResponse(array(
+            'result' => 1,
+            'id' => $realisation->getId(),
+            'title'=>$realisation->getTitle(),
+            'description'=>$realisation->getDescription(),
+            'websiteLink'=>$realisation->getWebsiteLink(),
+            'githubLink'=>$realisation->getGithubLink(),
+            'imageLink'=>$realisation->getImageLink(),
+        ));
+     }
 
 }

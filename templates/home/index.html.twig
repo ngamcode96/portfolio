@@ -7,6 +7,7 @@
 {% block body %}
 
 
+
     <nav class="navbar">
         <div class="max-width">
             <div class="logo"><a href="#">{{user.firstName}} {{user.lastName}}<span></span></a></div>
@@ -47,9 +48,17 @@
     </section>
 
     <section class="services" id="services">
+   
         <div class="max-width">
             <h2 class="title">Mes réalisations</h2>
             <div class="serv-content">
+                 <div class="project-content">
+                    <div class="close-project" style="float:right"><i class="far fa-window-close" style="color:#1a2352; font-size:30px; cursor:pointer"></i></div>
+                    <div class="project">
+                        
+                    </div>
+
+                </div>
             {% for realisation in realisations %}
                 <div class="card">
                     <div class="box">
@@ -59,7 +68,7 @@
                         {% endif %}
                         <div class="text">{{realisation.title}}</div>
                         <p>{{realisation.description | raw }}</p>
-                        <a href="#" class="btn-show">Voir les détails</a>
+                        <button class="btn-show" id="btn-show" ref="{{realisation.id}}">Voir les détails</button>
                     </div>
                 </div>    
             {% endfor %}       
