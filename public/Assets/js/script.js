@@ -14,6 +14,8 @@ $(document).ready(function(){
                 
 
                 if(data.result == 1){
+                    
+                    var scroll = $(window).scrollTop();
 
                     var content = '<div class="p-header" style="margin:10px; width: 120px">';
                     if(data.imageLink != null){
@@ -29,6 +31,7 @@ $(document).ready(function(){
                     content = content + '<div style="margin:10px; width:97%;color: #1a2352;"><h4>Description</h4><p>' + data.description + '</p></div>';
                     
                     $(".pro-opa").show();
+                    $(".project-content").css({'top' : scroll + 'px'});
                     $(".project").html(content);
                     
                     project_content.fadeIn(1000);
