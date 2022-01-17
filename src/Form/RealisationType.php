@@ -17,7 +17,8 @@ class RealisationType extends AbstractType
             ->add('description')
             ->add('websiteLink')
             ->add('githubLink')
-            ->add('imageLink', FileType::class, array('data_class' => null))
+            ->add('imageLink')
+            // ->add('imageLink', FileType::class, array('data_class' => null))
             ->add('priory')
         ;
     }

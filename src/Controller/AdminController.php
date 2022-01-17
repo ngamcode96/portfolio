@@ -14,8 +14,12 @@ use App\Form\RealisationType;
 use App\Form\UserType;
 use App\Repository\CompetencesRepository;
 use App\Repository\RealisationRepository;
+use Doctrine\Persistence\ObjectManager as PersistenceObjectManager;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+
+
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 class AdminController extends AbstractController
 {
@@ -31,24 +35,32 @@ class AdminController extends AbstractController
 
         /**
      * @Route("admin/user/{id}/edit", name="user_edit")
+     * @Route("admin/user/add", name="user_add")
      */
 
-    public function editUser(User $user, Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function editUser(User $user = null, Request $request, PersistenceObjectManager $manager, UserPasswordHasherInterface $passwordHasher): Response
     {
+
+        if($user == null){
+            $user = new User();
+        }
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        $manager = $this->getDoctrine()->getManager();
 
-        if($form->isSubmitted() && $form->isValid()){
 
-           $hash = $encoder->encodePassword($user, $user->getPassword());
+        if($form->isSubmitted()){
+
+            $hash = $passwordHasher->hashPassword($user, $user->getPassword());
+          
            $user->setPassword($hash);
 
            $manager->persist($user);
            $manager->flush();
 
+
         }
+        
        return $this->render('admin/edit_user.html.twig', [
            'form'=>$form->createView()
        ]);
@@ -61,7 +73,6 @@ class AdminController extends AbstractController
     function getSkills(CompetencesRepository $competencesRepo): Response
     {
         $skills = $competencesRepo->findAll();
-        dump($skills);
         return $this->render("admin/skills.html.twig", [
             'skills'=>$skills
         ]);
@@ -74,7 +85,6 @@ class AdminController extends AbstractController
     function getProjects(RealisationRepository $realisationRepository): Response
     {
         $projects = $realisationRepository->findAll();
-        dump($projects);
         return $this->render("admin/projects.html.twig", [
             'projects'=>$projects
         ]);
@@ -85,9 +95,9 @@ class AdminController extends AbstractController
      * @Route("/admin/projects_manager/new", name="add_new_project")
      */
 
-    public function addOrEditProject(Realisation $project = null, Request $request): Response
+    public function addOrEditProject(Realisation $project = null, Request $request, PersistenceObjectManager $manager): Response
     {
-        $manager = $this->getDoctrine()->getManager();
+        
 
         if($project == null){
             $project = new Realisation();
@@ -100,15 +110,15 @@ class AdminController extends AbstractController
 
         if($form->isSubmitted() && $form->isSubmitted()){
 
-            $image = $form->get('imageLink')->getData();
-            $file_name = md5(uniqid()).'.'.$image->guessExtension();
+            // $image = $form->get('imageLink')->getData();
+            // $file_name = md5(uniqid()).'.'.$image->guessExtension();
 
-            $image->move(
-                $this->getParameter("images_directory"),
-                $file_name
-            );
+            // $image->move(
+            //     $this->getParameter("images_directory"),
+            //     $file_name
+            // );
 
-            $project->setImageLink($file_name);
+            // $project->setImageLink($file_name);
 
             $manager->persist($project);
             $manager->flush();
@@ -124,8 +134,8 @@ class AdminController extends AbstractController
  * @Route("/admin/skill_manager/{id}/delete", name="delete_project")
  */
 
- public function delete_project(Realisation $project){
-    $manager = $this->getDoctrine()->getManager();
+ public function delete_project(Realisation $project, PersistenceObjectManager $manager){
+    
     
     $manager->remove($project);
     $manager->flush();
@@ -139,9 +149,9 @@ class AdminController extends AbstractController
      * @Route("/admin/skill_manager/new", name="add_new_skill")
      */
 
-    public function addOrEditSkill(Competences $competence = null, Request $request): Response
+    public function addOrEditSkill(Competences $competence = null, Request $request, PersistenceObjectManager $manager): Response
     {
-        $manager = $this->getDoctrine()->getManager();
+        
 
         if($competence == null){
             $competence = new Competences();
@@ -151,7 +161,7 @@ class AdminController extends AbstractController
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isSubmitted()){
+        if($form->isSubmitted() && $form->isValid()){
             $manager->persist($competence);
             $manager->flush();
             return $this->redirectToRoute("skills_manager");
@@ -166,8 +176,8 @@ class AdminController extends AbstractController
  * @Route("/admin/skill_manager/{id}/delete", name="delete_skill")
  */
 
- public function delete_skill(Competences $skill){
-    $manager = $this->getDoctrine()->getManager();
+ public function delete_skill(Competences $skill, PersistenceObjectManager $manager){
+    
     
     $manager->remove($skill);
     $manager->flush();

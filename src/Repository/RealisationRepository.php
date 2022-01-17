@@ -19,6 +19,11 @@ class RealisationRepository extends ServiceEntityRepository
         parent::__construct($registry, Realisation::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy(array(), array('priory' => 'ASC'));
+    }
+
     // /**
     //  * @return Realisation[] Returns an array of Realisation objects
     //  */

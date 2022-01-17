@@ -1,12 +1,13 @@
 security:
-    encoders:
-        App\Entity\User:
-            algorithm: bcrypt
 
-    enable_authenticator_manager: true
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+        App\Entity\User:
+            algorithm: 'auto'
+
+    enable_authenticator_manager: true
+    
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
         in_database:
@@ -39,12 +40,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/admin/user/[0-9]+/edit, roles: ROLE_USER }
-        - { path: ^/admin, roles: ROLE_USER }
-        - { path: ^/admin/skills_manager, roles: ROLE_USER }
-        - { path: ^/admin/skills_manager/[0-9]+/edit, roles: ROLE_USER }
-        - { path: ^/admin/skills_manager/[0-9]+/delete, roles: ROLE_USER }
-        # - { path: ^/profile, roles: ROLE_USER }
+        # - { path: ^/admin/user/[0-9]+/edit, roles: ROLE_USER }
+        # - { path: ^/admin/user/add, roles: ROLE_USER }
+        # - { path: ^/admin, roles: ROLE_USER }
+        # - { path: ^/admin/skills_manager, roles: ROLE_USER }
+        # - { path: ^/admin/skills_manager/[0-9]+/edit, roles: ROLE_USER }
+        # - { path: ^/admin/skills_manager/[0-9]+/delete, roles: ROLE_USER }
+        # # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:
